@@ -1,8 +1,9 @@
 import pandas as pd
 import re
+import joblib
 import string
 import os
-
+from sklearn.feature_extraction.text import TfidfVectorizer
 # Load the CSV (update path if needed)
 df = pd.read_csv('datasets/fake_job_postings.csv')
 
@@ -37,6 +38,22 @@ df['combined_text'] = (
 
 # Keep only necessary columns
 df = df[['combined_text', 'fraudulent']]
+def vectorizer():
+        tfidf_vectorizer = TfidfVectorizer(
+        max_features=5000,
+        min_df=2,
+        max_df=0.85,
+        ngram_range=(1,2),
+        norm='l2',
+        sublinear_tf=True)
+        tfidf_matrix = tfidf_vectorizer.fit_transform(df['combined_text'])
+        tfidf_features = tfidf_vectorizer.get_feature_names_out()
+        tfidf_df = pd.DataFrame(
+            tfidf_matrix.toarray(),
+            columns=tfidf_features
+        )
+        
+        return tfidf_df,tfidf_vectorizer
 
 # Ensure output directory exists
 os.makedirs('datasets', exist_ok=True)
