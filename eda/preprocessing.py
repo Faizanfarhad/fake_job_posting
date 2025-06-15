@@ -40,10 +40,10 @@ df['combined_text'] = (
 df = df[['combined_text', 'fraudulent']]
 def vectorizer():
         tfidf_vectorizer = TfidfVectorizer(
-        max_features=5000,
+        max_features=8000,
         min_df=2,
         max_df=0.85,
-        ngram_range=(1,2),
+        ngram_range=(1,3),
         norm='l2',
         sublinear_tf=True)
         tfidf_matrix = tfidf_vectorizer.fit_transform(df['combined_text'])
