@@ -90,7 +90,7 @@ spot_the_scam_dashboard/
 - **F1 Score**: `0.7674` (Binary)
 - **Precision**: `0.6758`
 - **Recall**: `0.8879`
-- **TF-IDF Vectorizer**: 5000 features
+- **TF-IDF Vectorizer**: 7000 features
 - **Class Balancing**: Stratified split, F1 evaluation
 
 > **Overall Accuracy**: 0.9732
